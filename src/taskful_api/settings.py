@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'oauth2_provider',
     'social_django',
     'rest_framework_social_oauth2',
@@ -119,6 +120,7 @@ REST_FRAMEWORK = {
         #Autenticacion por clases
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
 
         #Autenticacion por OAUTH2
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
@@ -129,6 +131,7 @@ REST_FRAMEWORK = {
 AUTHENTICATION_BACKEND = (
     'django.contrib.auth.backends.ModelBackend',
     'rest_framework_social_oauth2.backends.DjangoOAuth2',
+    'oauth2_provider.backends.OAuth2Backend',
 )
 
 

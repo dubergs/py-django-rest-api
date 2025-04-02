@@ -21,8 +21,10 @@ from django.conf import settings
 from house import router as house_api_router
 from django.conf.urls.static import static
 from task import router as task_api_router
+from rest_framework.authtoken.views import obtain_auth_token
 
 auth_api_urls = [
+    path('token/', obtain_auth_token, name='api_token_auth'),
     path(r'', include('rest_framework_social_oauth2.urls')),
 ]
 
@@ -37,6 +39,7 @@ api_url_patterns = [
 ]
 
 urlpatterns = [
+    path('api/auth/token/', obtain_auth_token, name='api_token_auth'),
     path('admin/', admin.site.urls),
     path('api/', include(api_url_patterns)),
 ]
