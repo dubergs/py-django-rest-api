@@ -1,4 +1,4 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, filters
 from .models import House
 from .serializers import HouseSerializer
 from .permissions import IsHouseManagerOrNone
@@ -11,7 +11,8 @@ class HouseViewSet(viewsets.ModelViewSet):
     queryset = House.objects.all()
     permission_classes = [IsHouseManagerOrNone, ]
     serializer_class = HouseSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    search_fields = ['name', 'description']
     filterset_fields = ['members']
     
 
